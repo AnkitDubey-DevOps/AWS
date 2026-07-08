@@ -25,4 +25,27 @@ git status
 git push origin master
 ```
 
+Deployment: deployment means sending your application from your local machine (or a repository) to servers (also called instances) where it will actually run.
+
+### Where Can CodeDeploy Deploy To?
+CodeDeploy supports four deployment targets:
+
+**EC2 Instances**: 	Virtual servers in AWS
+**On-Premises Servers**:	Your own physical servers in a data center
+**Lambda Functions**:	Serverless functions (CodeDeploy handles traffic shifting from v1 to v2)
+**ECS Services**:	Container-based applications running in ECS
+
+### Where Does the Code Come From?
+
+**For EC2 and On-Premises Deployments**
+**S3 Bucket**	Upload your code as a .zip file; CodeDeploy downloads and extracts it
+**GitHub**	CodeDeploy clones the repository directly
+**Bitbucket**	Same as GitHub—clones the repository
+
+### For Lambda Deployments
+The code is already in Lambda (typically uploaded via S3 as a .zip file). CodeDeploy's job here is to shift traffic from the old version to the new version—not to move code around.
+
+### For ECS Deployments
+The container image lives in ECR (Elastic Container Registry). CodeDeploy orchestrates deploying the new container version to your ECS service.
+
 
